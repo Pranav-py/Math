@@ -4,8 +4,8 @@ Created on Fri Feb 25 15:51:40 2022
 
 @author: pranav.reddy
 """
-import pandas as pd
-import numpy as np
+#import pandas as pd
+#import numpy as np
 #import glob
 #import datetime
 #import winsound 
@@ -27,6 +27,7 @@ import random
 
 #Page
 st.title('Heading')
+col1, col2 = st.columns(2)
 
 choice=st.sidebar.radio('Select decimals', (0,1,2))
 
@@ -46,10 +47,10 @@ if 'ans' not in st.session_state:
 
 #st.write(st.session_state.ans)
 
-st.header(str(rand_nos[0])+'+'+str(rand_nos[1]))
+col1.header(str(rand_nos[0])+'+'+str(rand_nos[1]))
 
 
-input=st.number_input('Your ans here',value=0)
+input=col2.number_input('Your ans here',value=0)
 #check=st.button('Check')
 #if check:
 #   st.write(st.session_state.ans)
@@ -61,14 +62,14 @@ input=st.number_input('Your ans here',value=0)
 #st.write(str(st.session_state.ans==input))
 
 if st.session_state.ans==input:
-    st.success(str(st.session_state.ans)+' - That\'s correct!')
+    col2.success(str(st.session_state.ans)+' - That\'s correct!')
     st.session_state.score +=1
-    st.success('Your score is '+str(st.session_state.score))
+    col2.success('Your score is '+str(st.session_state.score))
     
 else:
-    st.warning('Correct answer is '+str(st.session_state.ans))
+    col2.warning('Correct answer is '+str(st.session_state.ans))
     st.session_state.score -=1
-    st.error(st.session_state.score)
+    col2.error(st.session_state.score)
 
 st.session_state.ans=round(rand_nos[0]+rand_nos[1],2)
 
