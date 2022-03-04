@@ -28,7 +28,7 @@ import random
 #Page
 st.title('Heading')
 
-choice=st.radio('Select decimals', (0,1,2))
+choice=st.sidebar.radio('Select decimals', (0,1,2))
 
 
 rand_nos=[(random.randint(1,10)),random.randint(1,10)]
