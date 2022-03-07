@@ -50,11 +50,11 @@ if 'ans' not in st.session_state:
 col1.header(str(rand_nos[0])+'+'+str(rand_nos[1]))
 
 
-input=col2.number_input('Your ans here',value=0)
+input=col2.number_input('Your ans here')
 #check=st.button('Check')
 #if check:
 #   st.write(st.session_state.ans)
-#input=float(input)
+#input=int(input)
 
 #st.session_state.ans=float(st.session_state.ans)
 
