@@ -4,62 +4,46 @@ Created on Fri Feb 25 15:51:40 2022
 
 @author: pranav.reddy
 """
-#import pandas as pd
-#import numpy as np
-#import glob
-#import datetime
-#import winsound 
+
 import streamlit as st
 import random
-#import time
 
-#import matplotlib.pyplot as plt
-#import seaborn as sns
-#import plotly_express as px
-#import plotly.graph_objects as go
-#from plotly.subplots import make_subplots
-
-#from operator import attrgetter
-#import matplotlib.colors as mcolors
-#import matplotlib.ticker as mticker
-#import plotly.figure_factory as ff
 
 
 #Page
-st.title('Heading')
+st.title('What is ')
 col1, col2 = st.columns(2)
 
-choice=st.sidebar.radio('Select decimals', (0,1,2))
+#Sidebar choice
+choice_d=st.sidebar.radio('Select decimals', (0,1,2))
+choice_o=st.sidebar.radio('Select arithmetic',('+','-','/','*','%'))
 
-
+#Generate Random numbers
 rand_nos=[(random.randint(1,10)),random.randint(1,10)]
 rand_decimal=[round(random.uniform(0,1),2),round(random.uniform(0,1),2)]
-print(rand_decimal)
+rand_nos=[round(rand_nos[0]+rand_decimal[0],choice_d),round(rand_nos[1]+rand_decimal[1],choice_d)]
 
 
-rand_nos=[round(rand_nos[0]+rand_decimal[0],choice),round(rand_nos[1]+rand_decimal[1],choice)]
-
-print(rand_nos)
-
+#Create ans & score in session
 if 'ans' not in st.session_state:
     st.session_state.ans=0
     st.session_state.score=0
 
 #st.write(st.session_state.ans)
 
-col1.header(str(rand_nos[0])+'+'+str(rand_nos[1]))
+# User Question Text & input here 
+
+if choice_o=='/':
+    col1.title(str(rand_nos[0])+choice_o+str(round(rand_nos[1],0)))
+else:
+    col1.title(str(rand_nos[0])+choice_o+str(rand_nos[1]))
+
+
 
 
 input=col2.number_input('Your ans here')
-#check=st.button('Check')
-#if check:
-#   st.write(st.session_state.ans)
-#input=int(input)
-
-#st.session_state.ans=float(st.session_state.ans)
 
 
-#st.write(str(st.session_state.ans==input))
 
 if st.session_state.ans==input:
     col2.success(str(st.session_state.ans)+' - That\'s correct!')
@@ -71,10 +55,18 @@ else:
     st.session_state.score -=1
     col2.error(st.session_state.score)
 
-st.session_state.ans=round(rand_nos[0]+rand_nos[1],2)
+if choice_o=='+':
+    st.session_state.ans=round(rand_nos[0]+rand_nos[1],2)
+elif choice_o=='-':
+    st.session_state.ans=round(rand_nos[0]-rand_nos[1],2)
+elif choice_o=='/':
+    st.session_state.ans=round(rand_nos[0]/round(rand_nos[1],0),2)
+
+input=''
 
 
 clear=st.button('Clear')
 if clear:
     st.session_state.score =0
 
+print(choice_o)
